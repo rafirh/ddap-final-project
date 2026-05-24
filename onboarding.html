@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>On Boarding – SakuAI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap"
+    rel="stylesheet" />
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #1a1a2e;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* ── Phone shell ── */
+    .phone {
+      width: 390px;
+      min-height: 100vh;
+      background: #F7F9FB;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Decorative blobs ── */
+    .blob-tl {
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      left: -201px;
+      top: 24px;
+      background: rgba(0, 80, 203, 0.10);
+      border-radius: 9999px;
+      filter: blur(40px);
+      pointer-events: none;
+    }
+
+    .blob-br {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      right: -76px;
+      top: 567px;
+      background: rgba(0, 204, 249, 0.15);
+      border-radius: 9999px;
+      filter: blur(30px);
+      pointer-events: none;
+    }
+
+    /* ── Main content ── */
+    .content {
+      position: relative;
+      z-index: 1;
+      padding: 48px 20px 32px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    /* ── Hero section ── */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: 32px;
+      padding-top: 16px;
+    }
+
+    .hero-image-wrap {
+      width: 192px;
+      height: 192px;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0px 12px 24px rgba(0, 102, 255, 0.08);
+      overflow: hidden;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .hero-image-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-title {
+      color: #191C1E;
+      font-size: 28px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      line-height: 36px;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    .hero-subtitle {
+      max-width: 280px;
+      text-align: center;
+      color: #424656;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+    }
+
+    /* ── Form section ── */
+    .form-section {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      flex: 1;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .field-label {
+      padding-left: 4px;
+      color: #191C1E;
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 16px;
+      letter-spacing: 0.6px;
+    }
+
+    /* ── Input wrapper (icon + input) ── */
+    .input-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .input-icon {
+      position: absolute;
+      left: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #C2C6D8;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .input-prefix {
+      position: absolute;
+      left: 16px;
+      color: #424656;
+      font-size: 20px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 600;
+      line-height: 28px;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .field input {
+      width: 100%;
+      height: 52px;
+      background: #F2F4F6;
+      border: 1px solid transparent;
+      border-radius: 12px;
+      outline: none;
+      font-family: 'Inter', sans-serif;
+      color: #191C1E;
+      transition: border-color 0.15s, background 0.15s;
+    }
+
+    .field input::placeholder {
+      color: #727687;
+    }
+
+    .field input:focus {
+      border-color: #0050CB;
+      background: white;
+    }
+
+    /* name input: icon on left */
+    .input-name {
+      padding: 15px 16px 15px 48px;
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    /* amount input: "Rp" prefix on left, value right-aligned feel */
+    .input-amount {
+      padding: 12px 16px 12px 52px;
+      font-size: 20px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 600;
+    }
+
+    .field-hint {
+      padding-left: 4px;
+      padding-top: 4px;
+      color: #727687;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+    }
+
+    /* ── Spacer to push button to bottom ── */
+    .spacer {
+      flex: 1;
+      min-height: 32px;
+    }
+
+    /* ── CTA button ── */
+    .btn-cta {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+      height: 56px;
+      background: #0050CB;
+      border: none;
+      border-radius: 9999px;
+      box-shadow: 0px 8px 16px rgba(0, 102, 255, 0.20);
+      cursor: pointer;
+      color: white;
+      font-size: 20px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 600;
+      line-height: 28px;
+      text-decoration: none;
+      transition: background 0.15s, transform 0.1s;
+      margin-top: 32px;
+    }
+
+    .btn-cta:hover {
+      background: #0040A8;
+    }
+
+    .btn-cta:active {
+      transform: scale(0.98);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="phone">
+
+    <!-- Decorative blobs -->
+    <div class="blob-tl"></div>
+    <div class="blob-br"></div>
+
+    <div class="content">
+
+      <!-- Hero -->
+      <div class="hero">
+        <div class="hero-image-wrap">
+          <img src="assets/img/onboarding.jpg" alt="SakuAI Onboarding" />
+        </div>
+        <h1 class="hero-title">Halo, Sobat! 👋</h1>
+        <p class="hero-subtitle">SakuAI siap jadi asisten keuangan pintarmu. Yuk, kenalan dulu biar lebih akrab!</p>
+      </div>
+
+      <!-- Form -->
+      <div class="form-section">
+
+        <!-- Nama Panggilan -->
+        <div class="field">
+          <label class="field-label" for="nama">Nama Panggilan</label>
+          <div class="input-wrap">
+            <span class="input-icon">
+              <!-- smiley / face icon -->
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M11.99 2C6.47 2 2 6.48 2 12C2 17.52 6.47 22 11.99 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 11.99 2ZM12 20C7.58 20 4 16.42 4 12C4 7.58 7.58 4 12 4C16.42 4 20 7.58 20 12C20 16.42 16.42 20 12 20ZM15.5 11C16.33 11 17 10.33 17 9.5C17 8.67 16.33 8 15.5 8C14.67 8 14 8.67 14 9.5C14 10.33 14.67 11 15.5 11ZM8.5 11C9.33 11 10 10.33 10 9.5C10 8.67 9.33 8 8.5 8C7.67 8 7 8.67 7 9.5C7 10.33 7.67 11 8.5 11ZM12 17.5C14.33 17.5 16.31 16.04 17.11 14H6.89C7.69 16.04 9.67 17.5 12 17.5Z"
+                  fill="currentColor" />
+              </svg>
+            </span>
+            <input id="nama" class="input-name" type="text" placeholder="Panggil aku..." maxlength="50"
+              autocomplete="off" />
+          </div>
+        </div>
+
+        <!-- Target Uang Saku Bulanan -->
+        <div class="field">
+          <label class="field-label" for="target">Target Uang Saku Bulanan</label>
+          <div class="input-wrap">
+            <span class="input-prefix">Rp</span>
+            <input id="target" class="input-amount" type="number" min="0" step="1000" placeholder="0"
+              style="padding-left: 52px;" />
+          </div>
+          <p class="field-hint">Tenang, ini bisa diubah kapan saja.</p>
+        </div>
+
+        <div class="spacer"></div>
+
+        <!-- CTA -->
+        <a href="index.html" class="btn-cta">
+          Mulai Kelola Keuangan
+          <!-- Arrow right icon -->
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 4L10.59 5.41L16.17 11H4V13H16.17L10.59 18.59L12 20L20 12L12 4Z" fill="white" />
+          </svg>
+        </a>
+
+      </div>
+    </div>
+
+  </div>
+</body>
+
+</html>
