@@ -4,13 +4,43 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>On Boarding – SakuAI</title>
+  <meta name="description" content="Selamat datang di SakuAI. Kenalkan dirimu dan mulai kelola keuanganmu secara cerdas sekarang." />
+  <title>Onboarding – SakuAI</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap"
-    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+
   <style>
+    :root {
+      --primary-color: #0050CB;
+      --primary-active: #0040A8;
+      --blob-primary: rgba(0, 80, 203, 0.10);
+      --blob-secondary: rgba(0, 204, 249, 0.15);
+
+      --bg-dark: #1a1a2e;
+      --bg-light: #F7F9FB;
+      --white: #FFFFFF;
+      --text-main: #191C1E;
+      --text-muted: #424656;
+      --text-subtle: #727687;
+      --border-color: #E0E3E5;
+
+      --input-bg: #F2F4F6;
+      --input-icon-color: #C2C6D8;
+
+      --font-primary: 'Inter', sans-serif;
+      --font-display: 'Plus Jakarta Sans', sans-serif;
+      --border-radius-lg: 16px;
+      --border-radius-md: 12px;
+      --border-radius-full: 9999px;
+      --shadow-md: 0px 12px 24px rgba(0, 102, 255, 0.08);
+      --shadow-btn: 0px 8px 16px rgba(0, 102, 255, 0.20);
+      --shadow-btn-hover: 0px 12px 24px rgba(0, 102, 255, 0.30);
+      --transition-smooth: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-fast: all 0.15s ease;
+    }
+
     *,
     *::before,
     *::after {
@@ -20,34 +50,35 @@
     }
 
     body {
-      background: #1a1a2e;
+      background: var(--bg-dark);
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: flex-start;
-      font-family: 'Inter', sans-serif;
+      font-family: var(--font-primary);
+      overflow-x: hidden;
     }
 
-    /* ── Phone shell ── */
     .phone {
-      width: 390px;
+      width: 100%;
+      max-width: 390px;
       min-height: 100vh;
-      background: #F7F9FB;
+      min-height: 100dvh;
+      background: var(--bg-light);
       position: relative;
       overflow: hidden;
       display: flex;
       flex-direction: column;
     }
 
-    /* ── Decorative blobs ── */
     .blob-tl {
       position: absolute;
       width: 300px;
       height: 300px;
       left: -201px;
       top: 24px;
-      background: rgba(0, 80, 203, 0.10);
-      border-radius: 9999px;
+      background: var(--blob-primary);
+      border-radius: var(--border-radius-full);
       filter: blur(40px);
       pointer-events: none;
     }
@@ -57,40 +88,39 @@
       width: 200px;
       height: 200px;
       right: -76px;
-      top: 567px;
-      background: rgba(0, 204, 249, 0.15);
-      border-radius: 9999px;
+      bottom: -60px;
+      background: var(--blob-secondary);
+      border-radius: var(--border-radius-full);
       filter: blur(30px);
       pointer-events: none;
     }
 
-    /* ── Main content ── */
     .content {
       position: relative;
       z-index: 1;
-      padding: 48px 20px 32px;
+      padding: clamp(24px, 5vh, 48px) 20px clamp(20px, 4vh, 32px);
       display: flex;
       flex-direction: column;
       flex: 1;
+      height: 100%;
     }
 
-    /* ── Hero section ── */
     .hero {
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding-bottom: 32px;
-      padding-top: 16px;
+      padding-bottom: clamp(12px, 2.5vh, 24px);
+      padding-top: clamp(8px, 1.5vh, 16px);
     }
 
     .hero-image-wrap {
-      width: 192px;
-      height: 192px;
-      background: white;
-      border-radius: 16px;
-      box-shadow: 0px 12px 24px rgba(0, 102, 255, 0.08);
+      width: clamp(110px, 20vh, 180px);
+      height: clamp(110px, 20vh, 180px);
+      background: var(--white);
+      border-radius: var(--border-radius-lg);
+      box-shadow: var(--shadow-md);
       overflow: hidden;
-      margin-bottom: 24px;
+      margin-bottom: clamp(12px, 2.5vh, 24px);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -105,11 +135,11 @@
     }
 
     .hero-title {
-      color: #191C1E;
-      font-size: 28px;
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: var(--text-main);
+      font-size: clamp(22px, 3vh, 28px);
+      font-family: var(--font-display);
       font-weight: 700;
-      line-height: 36px;
+      line-height: 1.25;
       text-align: center;
       margin-bottom: 8px;
     }
@@ -117,17 +147,16 @@
     .hero-subtitle {
       max-width: 280px;
       text-align: center;
-      color: #424656;
-      font-size: 14px;
+      color: var(--text-muted);
+      font-size: clamp(12px, 1.8vh, 14px);
       font-weight: 400;
-      line-height: 20px;
+      line-height: 1.4;
     }
 
-    /* ── Form section ── */
     .form-section {
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: clamp(12px, 2vh, 16px);
       flex: 1;
     }
 
@@ -139,14 +168,13 @@
 
     .field-label {
       padding-left: 4px;
-      color: #191C1E;
+      color: var(--text-main);
       font-size: 12px;
       font-weight: 600;
       line-height: 16px;
       letter-spacing: 0.6px;
     }
 
-    /* ── Input wrapper (icon + input) ── */
     .input-wrap {
       position: relative;
       display: flex;
@@ -159,7 +187,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #C2C6D8;
+      color: var(--input-icon-color);
       pointer-events: none;
       z-index: 1;
     }
@@ -167,9 +195,9 @@
     .input-prefix {
       position: absolute;
       left: 16px;
-      color: #424656;
+      color: var(--text-muted);
       font-size: 20px;
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-family: var(--font-display);
       font-weight: 600;
       line-height: 28px;
       pointer-events: none;
@@ -178,84 +206,83 @@
 
     .field input {
       width: 100%;
-      height: 52px;
-      background: #F2F4F6;
+      height: clamp(46px, 6vh, 52px);
+      background: var(--input-bg);
       border: 1px solid transparent;
-      border-radius: 12px;
+      border-radius: var(--border-radius-md);
       outline: none;
-      font-family: 'Inter', sans-serif;
-      color: #191C1E;
-      transition: border-color 0.15s, background 0.15s;
+      font-family: var(--font-primary);
+      color: var(--text-main);
+      transition: var(--transition-smooth);
     }
 
     .field input::placeholder {
-      color: #727687;
+      color: var(--text-subtle);
     }
 
     .field input:focus {
-      border-color: #0050CB;
-      background: white;
+      border-color: var(--primary-color);
+      background: var(--white);
+      box-shadow: 0 0 0 3px rgba(0, 80, 203, 0.15);
     }
 
-    /* name input: icon on left */
     .input-name {
       padding: 15px 16px 15px 48px;
       font-size: 16px;
       font-weight: 400;
     }
 
-    /* amount input: "Rp" prefix on left, value right-aligned feel */
     .input-amount {
       padding: 12px 16px 12px 52px;
       font-size: 20px;
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-family: var(--font-display);
       font-weight: 600;
     }
 
     .field-hint {
       padding-left: 4px;
       padding-top: 4px;
-      color: #727687;
+      color: var(--text-subtle);
       font-size: 14px;
       font-weight: 400;
       line-height: 20px;
     }
 
-    /* ── Spacer to push button to bottom ── */
     .spacer {
       flex: 1;
-      min-height: 32px;
+      min-height: 12px;
     }
 
-    /* ── CTA button ── */
     .btn-cta {
       display: flex;
       justify-content: center;
       align-items: center;
       gap: 8px;
       width: 100%;
-      height: 56px;
-      background: #0050CB;
+      height: clamp(48px, 6.8vh, 56px);
+      background: var(--primary-color);
       border: none;
-      border-radius: 9999px;
-      box-shadow: 0px 8px 16px rgba(0, 102, 255, 0.20);
+      border-radius: var(--border-radius-full);
+      box-shadow: var(--shadow-btn);
       cursor: pointer;
-      color: white;
-      font-size: 20px;
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: var(--white);
+      font-size: clamp(16px, 2.2vh, 20px);
+      font-family: var(--font-display);
       font-weight: 600;
       line-height: 28px;
       text-decoration: none;
-      transition: background 0.15s, transform 0.1s;
-      margin-top: 32px;
+      transition: var(--transition-smooth);
+      margin-top: clamp(16px, 3vh, 32px);
     }
 
     .btn-cta:hover {
-      background: #0040A8;
+      background: var(--primary-active);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-btn-hover);
     }
 
     .btn-cta:active {
-      transform: scale(0.98);
+      transform: translateY(0) scale(0.98);
     }
   </style>
 </head>
@@ -263,64 +290,52 @@
 <body>
   <div class="phone">
 
-    <!-- Decorative blobs -->
-    <div class="blob-tl"></div>
-    <div class="blob-br"></div>
+    <div class="blob-tl" aria-hidden="true"></div>
+    <div class="blob-br" aria-hidden="true"></div>
 
     <div class="content">
 
-      <!-- Hero -->
-      <div class="hero">
+      <header class="hero">
         <div class="hero-image-wrap">
-          <img src="assets/img/onboarding.jpg" alt="SakuAI Onboarding" />
+          <img src="assets/img/onboarding.jpg" alt="Ilustrasi Selamat Datang SakuAI" />
         </div>
         <h1 class="hero-title">Halo, Sobat! 👋</h1>
         <p class="hero-subtitle">SakuAI siap jadi asisten keuangan pintarmu. Yuk, kenalan dulu biar lebih akrab!</p>
-      </div>
+      </header>
 
-      <!-- Form -->
-      <div class="form-section">
+      <main class="form-section">
 
-        <!-- Nama Panggilan -->
         <div class="field">
           <label class="field-label" for="nama">Nama Panggilan</label>
           <div class="input-wrap">
-            <span class="input-icon">
-              <!-- smiley / face icon -->
+            <span class="input-icon" aria-hidden="true">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M11.99 2C6.47 2 2 6.48 2 12C2 17.52 6.47 22 11.99 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 11.99 2ZM12 20C7.58 20 4 16.42 4 12C4 7.58 7.58 4 12 4C16.42 4 20 7.58 20 12C20 16.42 16.42 20 12 20ZM15.5 11C16.33 11 17 10.33 17 9.5C17 8.67 16.33 8 15.5 8C14.67 8 14 8.67 14 9.5C14 10.33 14.67 11 15.5 11ZM8.5 11C9.33 11 10 10.33 10 9.5C10 8.67 9.33 8 8.5 8C7.67 8 7 8.67 7 9.5C7 10.33 7.67 11 8.5 11ZM12 17.5C14.33 17.5 16.31 16.04 17.11 14H6.89C7.69 16.04 9.67 17.5 12 17.5Z"
-                  fill="currentColor" />
+                <path d="M11.99 2C6.47 2 2 6.48 2 12C2 17.52 6.47 22 11.99 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 11.99 2ZM12 20C7.58 20 4 16.42 4 12C4 7.58 7.58 4 12 4C16.42 4 20 7.58 20 12C20 16.42 16.42 20 12 20ZM15.5 11C16.33 11 17 10.33 17 9.5C17 8.67 16.33 8 15.5 8C14.67 8 14 8.67 14 9.5C14 10.33 14.67 11 15.5 11ZM8.5 11C9.33 11 10 10.33 10 9.5C10 8.67 9.33 8 8.5 8C7.67 8 7 8.67 7 9.5C7 10.33 7.67 11 8.5 11ZM12 17.5C14.33 17.5 16.31 16.04 17.11 14H6.89C7.69 16.04 9.67 17.5 12 17.5Z" fill="currentColor" />
               </svg>
             </span>
-            <input id="nama" class="input-name" type="text" placeholder="Panggil aku..." maxlength="50"
-              autocomplete="off" />
+            <input id="nama" class="input-name" type="text" placeholder="Panggil aku..." maxlength="50" autocomplete="off" />
           </div>
         </div>
 
-        <!-- Target Uang Saku Bulanan -->
         <div class="field">
           <label class="field-label" for="target">Target Uang Saku Bulanan</label>
           <div class="input-wrap">
-            <span class="input-prefix">Rp</span>
-            <input id="target" class="input-amount" type="number" min="0" step="1000" placeholder="0"
-              style="padding-left: 52px;" />
+            <span class="input-prefix" aria-hidden="true">Rp</span>
+            <input id="target" class="input-amount" type="number" min="0" step="1000" placeholder="0" style="padding-left: 52px;" />
           </div>
           <p class="field-hint">Tenang, ini bisa diubah kapan saja.</p>
         </div>
 
         <div class="spacer"></div>
 
-        <!-- CTA -->
         <a href="index.html" class="btn-cta">
           Mulai Kelola Keuangan
-          <!-- Arrow right icon -->
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path d="M12 4L10.59 5.41L16.17 11H4V13H16.17L10.59 18.59L12 20L20 12L12 4Z" fill="white" />
           </svg>
         </a>
 
-      </div>
+      </main>
     </div>
 
   </div>

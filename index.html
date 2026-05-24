@@ -4,13 +4,50 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="SakuAI - Kelola uang saku kuliahmu secara cerdas dengan asisten AI pintar." />
   <title>Beranda – SakuAI</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap"
     rel="stylesheet" />
+
   <style>
+    :root {
+      --primary-color: #0050CB;
+      --primary-light: #DAE1FF;
+      --primary-active: #0066FF;
+      --secondary-color: #00677F;
+      --secondary-light: #B7EAFF;
+      --accent-color: #9E3625;
+      --accent-light: #FFDAD6;
+      --danger-color: #BA1A1A;
+      --danger-light: #FFDAD6;
+      --danger-dark: #93000A;
+
+      --bg-dark: #1a1a2e;
+      --bg-light: #F7F9FB;
+      --white: #FFFFFF;
+      --text-main: #191C1E;
+      --text-muted: #424656;
+      --text-subtle: #727687;
+      --border-color: #E0E3E5;
+      --hover-bg: #ECEEF0;
+      --nav-hover-bg: #F0F2F5;
+
+      --font-primary: 'Inter', sans-serif;
+      --font-display: 'Plus Jakarta Sans', sans-serif;
+      --border-radius-lg: 12px;
+      --border-radius-md: 8px;
+      --border-radius-full: 9999px;
+      --shadow-sm: 0px 1px 2px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0px 4px 6px -4px rgba(0, 0, 0, 0.1), 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0px -4px 12px rgba(0, 102, 255, 0.08);
+      --transition-smooth: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-fast: all 0.15s ease;
+    }
+
     *,
     *::before,
     *::after {
@@ -20,33 +57,44 @@
     }
 
     body {
-      background: #1a1a2e;
+      background: var(--bg-dark);
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: flex-start;
-      font-family: 'Inter', sans-serif;
+      font-family: var(--font-primary);
+      overflow-x: hidden;
     }
 
-    /* ── Phone shell ── */
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
     .phone {
       width: 390px;
       min-height: 100vh;
-      background: #F7F9FB;
+      background: var(--bg-light);
       position: relative;
       display: flex;
       flex-direction: column;
     }
 
-    /* ── Top header ── */
     .header {
       position: fixed;
       top: 0;
       width: 390px;
       height: 64px;
       padding: 0 20px;
-      background: #F7F9FB;
-      box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+      background: var(--bg-light);
+      box-shadow: var(--shadow-sm);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -56,9 +104,9 @@
     .avatar {
       width: 32px;
       height: 32px;
-      border-radius: 9999px;
+      border-radius: var(--border-radius-full);
       overflow: hidden;
-      background: #E0E3E5;
+      background: var(--border-color);
       flex-shrink: 0;
     }
 
@@ -69,9 +117,9 @@
     }
 
     .brand {
-      color: #0050CB;
+      color: var(--primary-color);
       font-size: 24px;
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-family: var(--font-display);
       font-weight: 700;
       line-height: 32px;
     }
@@ -79,21 +127,26 @@
     .btn-notif {
       width: 40px;
       height: 40px;
-      border-radius: 9999px;
+      border-radius: var(--border-radius-full);
       border: none;
       background: transparent;
       cursor: pointer;
       display: flex;
       justify-content: center;
       align-items: center;
-      color: #424656;
+      color: var(--text-muted);
+      transition: var(--transition-smooth);
     }
 
     .btn-notif:hover {
-      background: #ECEEF0;
+      background: var(--hover-bg);
+      transform: scale(1.05);
     }
 
-    /* ── Scrollable content ── */
+    .btn-notif:active {
+      transform: scale(0.95);
+    }
+
     .content {
       margin-top: 64px;
       margin-bottom: 80px;
@@ -104,20 +157,18 @@
       overflow-y: auto;
     }
 
-    /* ── Balance card ── */
     .balance-card {
-      background: #0050CB;
-      border-radius: 12px;
+      background: var(--primary-color);
+      border-radius: var(--border-radius-lg);
       padding: 24px;
       position: relative;
       overflow: hidden;
-      box-shadow: 0px 4px 6px -4px rgba(0, 0, 0, 0.10), 0px 10px 15px -3px rgba(0, 0, 0, 0.10);
+      box-shadow: var(--shadow-md);
       display: flex;
       flex-direction: column;
       gap: 16px;
     }
 
-    /* decorative blobs */
     .balance-card::before {
       content: '';
       position: absolute;
@@ -126,7 +177,7 @@
       right: -20px;
       top: -40px;
       background: rgba(255, 255, 255, 0.10);
-      border-radius: 9999px;
+      border-radius: var(--border-radius-full);
       filter: blur(12px);
     }
 
@@ -138,7 +189,7 @@
       left: -40px;
       bottom: -10px;
       background: rgba(255, 255, 255, 0.10);
-      border-radius: 9999px;
+      border-radius: var(--border-radius-full);
       filter: blur(8px);
     }
 
@@ -152,9 +203,9 @@
     }
 
     .balance-amount {
-      color: white;
+      color: var(--white);
       font-size: 32px;
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-family: var(--font-display);
       font-weight: 700;
       line-height: 40px;
     }
@@ -180,12 +231,12 @@
       width: 32px;
       height: 32px;
       background: rgba(255, 255, 255, 0.20);
-      border-radius: 9999px;
+      border-radius: var(--border-radius-full);
       backdrop-filter: blur(2px);
       display: flex;
       justify-content: center;
       align-items: center;
-      color: white;
+      color: var(--white);
       flex-shrink: 0;
     }
 
@@ -198,9 +249,9 @@
     }
 
     .stat-info .stat-value {
-      color: white;
+      color: var(--white);
       font-size: 20px;
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-family: var(--font-display);
       font-weight: 600;
       line-height: 28px;
     }
@@ -211,7 +262,6 @@
       background: rgba(255, 255, 255, 0.20);
     }
 
-    /* ── Section: Pengeluaran Bulan Ini ── */
     .section-header {
       display: flex;
       justify-content: space-between;
@@ -219,24 +269,26 @@
     }
 
     .section-title {
-      color: #191C1E;
+      color: var(--text-main);
       font-size: 20px;
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-family: var(--font-display);
       font-weight: 600;
       line-height: 28px;
     }
 
     .link-detail {
-      color: #0050CB;
+      color: var(--primary-color);
       font-size: 12px;
       font-weight: 600;
       letter-spacing: 0.6px;
       line-height: 16px;
       text-decoration: none;
+      transition: var(--transition-fast);
     }
 
     .link-detail:hover {
       text-decoration: underline;
+      opacity: 0.8;
     }
 
     .spending-section {
@@ -246,11 +298,11 @@
     }
 
     .spending-card {
-      background: white;
-      border-radius: 12px;
+      background: var(--white);
+      border-radius: var(--border-radius-lg);
       padding: 20px;
-      outline: 1px solid #E0E3E5;
-      box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+      outline: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
       display: flex;
       flex-direction: column;
       gap: 16px;
@@ -285,51 +337,50 @@
       font-size: 14px;
       font-weight: 600;
       line-height: 20px;
-      color: #191C1E;
+      color: var(--text-main);
     }
 
     .cat-label--warn {
-      color: #BA1A1A;
+      color: var(--danger-color);
     }
 
     .cat-amount {
       font-size: 12px;
       font-weight: 600;
       letter-spacing: 0.6px;
-      color: #424656;
+      color: var(--text-muted);
     }
 
     .cat-amount--warn {
-      color: #BA1A1A;
+      color: var(--danger-color);
     }
 
     .progress-track {
       height: 10px;
-      background: #ECEEF0;
-      border-radius: 9999px;
+      background: var(--hover-bg);
+      border-radius: var(--border-radius-full);
       overflow: hidden;
       position: relative;
     }
 
     .progress-track--warn {
-      background: #FFDAD6;
+      background: var(--accent-light);
     }
 
     .progress-fill {
       height: 100%;
-      border-radius: 9999px;
+      border-radius: var(--border-radius-full);
       position: absolute;
       left: 0;
       top: 0;
     }
 
-    /* ── Warning banner ── */
     .warning-banner {
-      background: #FFDAD6;
-      border-radius: 8px;
+      background: var(--danger-light);
+      border-radius: var(--border-radius-md);
       padding: 16px;
       outline: 1px solid rgba(186, 26, 26, 0.20);
-      box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+      box-shadow: var(--shadow-sm);
       display: flex;
       align-items: flex-start;
       gap: 12px;
@@ -337,12 +388,12 @@
 
     .warn-icon {
       padding-top: 2px;
-      color: #BA1A1A;
+      color: var(--danger-color);
       flex-shrink: 0;
     }
 
     .warn-title {
-      color: #BA1A1A;
+      color: var(--danger-color);
       font-size: 12px;
       font-weight: 600;
       letter-spacing: 0.6px;
@@ -351,13 +402,12 @@
     }
 
     .warn-body {
-      color: #93000A;
+      color: var(--danger-dark);
       font-size: 14px;
       font-weight: 400;
       line-height: 20px;
     }
 
-    /* ── Transaksi Terbaru ── */
     .transactions-section {
       display: flex;
       flex-direction: column;
@@ -369,23 +419,32 @@
       display: flex;
       flex-direction: column;
       gap: 16px;
+      list-style-type: none;
     }
 
     .tx-item {
-      background: white;
-      border-radius: 8px;
+      background: var(--white);
+      border-radius: var(--border-radius-md);
       padding: 12px;
-      outline: 1px solid #E0E3E5;
-      box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+      outline: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
       display: flex;
       align-items: center;
       gap: 16px;
+      transition: var(--transition-smooth);
+    }
+
+    .tx-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.06);
+      outline-color: var(--primary-light);
+      cursor: pointer;
     }
 
     .tx-icon {
       width: 48px;
       height: 48px;
-      border-radius: 9999px;
+      border-radius: var(--border-radius-full);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -398,14 +457,14 @@
     }
 
     .tx-name {
-      color: #191C1E;
+      color: var(--text-main);
       font-size: 14px;
       font-weight: 600;
       line-height: 20px;
     }
 
     .tx-meta {
-      color: #424656;
+      color: var(--text-muted);
       font-size: 12px;
       font-weight: 600;
       letter-spacing: 0.6px;
@@ -418,24 +477,23 @@
       line-height: 20px;
       text-align: right;
       white-space: nowrap;
-      color: #191C1E;
+      color: var(--text-main);
     }
 
     .tx-amount--income {
-      color: #0050CB;
+      color: var(--primary-color);
     }
 
-    /* ── Bottom navigation ── */
     .bottom-nav {
       position: fixed;
       bottom: 0;
       width: 390px;
       height: 80px;
       padding: 0 18px 0 22px;
-      background: white;
-      box-shadow: 0px -4px 12px rgba(0, 102, 255, 0.08);
-      border-top-left-radius: 12px;
-      border-top-right-radius: 12px;
+      background: var(--white);
+      box-shadow: var(--shadow-lg);
+      border-top-left-radius: var(--border-radius-lg);
+      border-top-right-radius: var(--border-radius-lg);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -447,27 +505,31 @@
       flex-direction: column;
       align-items: center;
       padding: 4px 16px;
-      border-radius: 9999px;
+      border-radius: var(--border-radius-full);
       text-decoration: none;
       cursor: pointer;
       border: none;
       background: transparent;
-      color: #424656;
+      color: var(--text-muted);
       font-size: 10px;
-      font-family: 'Inter', sans-serif;
+      font-family: var(--font-primary);
       font-weight: 400;
       line-height: 15px;
-      transition: background 0.15s;
+      transition: var(--transition-smooth);
     }
 
     .nav-item:hover:not(.nav-item--active) {
-      background: #F0F2F5;
+      background: var(--nav-hover-bg);
     }
 
     .nav-item--active {
-      background: #0066FF;
+      background: var(--primary-active);
       color: #F8F7FF;
       font-weight: 700;
+    }
+
+    .nav-item:active {
+      transform: scale(0.95);
     }
 
     .nav-icon {
@@ -482,13 +544,12 @@
 <body>
   <div class="phone">
 
-    <!-- ── Header ── -->
     <header class="header">
       <div class="avatar">
-        <img src="assets/img/user.jpg" alt="User" />
+        <img src="assets/img/user.jpg" alt="Foto Profil Pengguna" />
       </div>
       <span class="brand">SakuAI</span>
-      <button class="btn-notif" aria-label="Notifikasi">
+      <button class="btn-notif" aria-label="Buka Notifikasi">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M12 22C13.1046 22 14 21.1046 14 20H10C10 21.1046 10.8954 22 12 22Z" fill="currentColor" />
           <path
@@ -498,21 +559,17 @@
       </button>
     </header>
 
-    <!-- ── Main content ── -->
     <main class="content">
 
-      <!-- Balance card -->
-      <div class="balance-card">
+      <section class="balance-card" aria-label="Informasi Saldo Utama">
         <div>
           <p class="balance-label">SISA UANG SAKU</p>
           <p class="balance-amount">Rp 1.250.000</p>
         </div>
         <div class="balance-divider"></div>
         <div class="balance-stats">
-          <!-- Pemasukan -->
           <div class="stat">
-            <div class="stat-icon">
-              <!-- Arrow down -->
+            <div class="stat-icon" aria-hidden="true">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M20 12L18.59 10.59L13 16.17V4H11V16.17L5.42 10.58L4 12L12 20L20 12Z" fill="white" />
               </svg>
@@ -522,11 +579,9 @@
               <p class="stat-value">Rp 3.500k</p>
             </div>
           </div>
-          <div class="stat-divider"></div>
-          <!-- Pengeluaran -->
+          <div class="stat-divider" aria-hidden="true"></div>
           <div class="stat">
-            <div class="stat-icon">
-              <!-- Arrow up -->
+            <div class="stat-icon" aria-hidden="true">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M4 12L5.41 13.41L11 7.83V20H13V7.83L18.58 13.42L20 12L12 4L4 12Z" fill="white" />
               </svg>
@@ -537,12 +592,11 @@
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      <!-- Pengeluaran Bulan Ini -->
-      <div class="spending-section">
+      <section class="spending-section" aria-labelledby="spending-title">
         <div class="section-header">
-          <h2 class="section-title">Pengeluaran Bulan Ini</h2>
+          <h2 id="spending-title" class="section-title">Pengeluaran Bulan Ini</h2>
           <a href="#" class="link-detail">Lihat Detail</a>
         </div>
 
@@ -550,7 +604,7 @@
           <div class="category-row">
             <div class="category-header">
               <div class="category-name">
-                <span class="cat-icon">
+                <span class="cat-icon" aria-hidden="true">
                   <svg width="13" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
                       d="M18.06 22.99H19.72C20.56 22.99 21.25 22.3 21.25 21.46L21.97 6.98C22.02 5.85 21.15 4.99 20.02 4.99H17.99C16.86 4.99 15.99 5.85 16.04 6.98L16.76 21.46C16.81 22.3 17.22 22.99 18.06 22.99ZM11 22.99H13C13.55 22.99 14 22.54 14 21.99V15H16V8.5C16 6.02 14.47 4 12 4C9.53 4 8 6.02 8 8.5V15H10V21.99C10 22.54 10.45 22.99 11 22.99Z"
@@ -561,16 +615,15 @@
               </div>
               <span class="cat-amount">Rp 1.000.000 (45%)</span>
             </div>
-            <div class="progress-track">
-              <div class="progress-fill" style="width: 45%; background: #0050CB;"></div>
+            <div class="progress-track" aria-hidden="true">
+              <div class="progress-fill" style="width: 45%; background: var(--primary-color);"></div>
             </div>
           </div>
 
-          <!-- Transportasi -->
           <div class="category-row">
             <div class="category-header">
               <div class="category-name">
-                <span class="cat-icon">
+                <span class="cat-icon" aria-hidden="true">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
                       d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22C12 22 19 14.25 19 9C19 5.13 15.87 2 12 2ZM12 11.5C10.62 11.5 9.5 10.38 9.5 9C9.5 7.62 10.62 6.5 12 6.5C13.38 6.5 14.5 7.62 14.5 9C14.5 10.38 13.38 11.5 12 11.5Z"
@@ -581,16 +634,15 @@
               </div>
               <span class="cat-amount">Rp 500.000 (22%)</span>
             </div>
-            <div class="progress-track">
-              <div class="progress-fill" style="width: 22%; background: #00677F;"></div>
+            <div class="progress-track" aria-hidden="true">
+              <div class="progress-fill" style="width: 22%; background: var(--secondary-color);"></div>
             </div>
           </div>
 
-          <!-- Kebutuhan Kuliah -->
           <div class="category-row">
             <div class="category-header">
               <div class="category-name">
-                <span class="cat-icon">
+                <span class="cat-icon" aria-hidden="true">
                   <svg width="18" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M5 13.18V17.18L12 21L19 17.18V13.18L12 17L5 13.18ZM12 3L1 9L12 15L21 10.09V17H23V9L12 3Z"
                       fill="#9E3625" />
@@ -600,16 +652,15 @@
               </div>
               <span class="cat-amount">Rp 450.000 (20%)</span>
             </div>
-            <div class="progress-track">
-              <div class="progress-fill" style="width: 20%; background: #9E3625;"></div>
+            <div class="progress-track" aria-hidden="true">
+              <div class="progress-fill" style="width: 20%; background: var(--accent-color);"></div>
             </div>
           </div>
 
-          <!-- Nongkrong (warning) -->
           <div class="category-row">
             <div class="category-header">
               <div class="category-name">
-                <span class="cat-icon">
+                <span class="cat-icon" aria-hidden="true">
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
                       d="M20 3H4V10C4 13.31 6.69 16 10 16V19H7V21H17V19H14V16C17.31 16 20 13.31 20 10V3ZM18 10H6V5H18V10Z"
@@ -620,90 +671,82 @@
               </div>
               <span class="cat-amount cat-amount--warn">Rp 300.000 (13%)</span>
             </div>
-            <div class="progress-track progress-track--warn">
-              <div class="progress-fill" style="width: 13%; background: #BA1A1A;"></div>
+            <div class="progress-track progress-track--warn" aria-hidden="true">
+              <div class="progress-fill" style="width: 13%; background: var(--danger-color);"></div>
             </div>
           </div>
-
         </div>
-      </div>
+      </section>
 
-      <!-- Peringatan Anggaran -->
-      <div class="warning-banner">
-        <span class="warn-icon">
+      <div class="warning-banner" role="alert">
+        <span class="warn-icon" aria-hidden="true">
           <svg width="22" height="19" viewBox="0 0 24 21" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M1 21H23L12 2L1 21ZM13 18H11V16H13V18ZM13 14H11V10H13V14Z" fill="#BA1A1A" />
           </svg>
         </span>
         <div>
-          <p class="warn-title">Peringatan Anggaran</p>
+          <h3 class="warn-title">Peringatan Anggaran</h3>
           <p class="warn-body">Anggaran Nongkrong kamu bulan ini sisa<br />Rp 25.000. Kurangi jajan kopi ya!</p>
         </div>
       </div>
 
-      <!-- Transaksi Terbaru -->
-      <div class="transactions-section">
-        <h2 class="section-title">Transaksi Terbaru</h2>
-        <div class="tx-list">
+      <section class="transactions-section" aria-labelledby="tx-title">
+        <h2 id="tx-title" class="section-title">Transaksi Terbaru</h2>
+        <ul class="tx-list">
 
-          <!-- Nasi Padang Murah -->
-          <div class="tx-item">
-            <div class="tx-icon" style="background: #DAE1FF;">
+          <li class="tx-item">
+            <div class="tx-icon" style="background: var(--primary-light);" aria-hidden="true">
               <svg width="16" height="21" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M18.06 22.99H19.72C20.56 22.99 21.25 22.3 21.25 21.46L21.97 6.98C22.02 5.85 21.15 4.99 20.02 4.99H17.99C16.86 4.99 15.99 5.85 16.04 6.98L16.76 21.46C16.81 22.3 17.22 22.99 18.06 22.99ZM11 22.99H13C13.55 22.99 14 22.54 14 21.99V15H16V8.5C16 6.02 14.47 4 12 4C9.53 4 8 6.02 8 8.5V15H10V21.99C10 22.54 10.45 22.99 11 22.99Z"
-                  fill="#0050CB" />
+                  fill="var(--primary-color)" />
               </svg>
             </div>
             <div class="tx-info">
-              <p class="tx-name">Nasi Padang Murah</p>
+              <h3 class="tx-name">Nasi Padang Murah</h3>
               <p class="tx-meta">Makanan &amp; Minuman • Hari ini, 12:30</p>
             </div>
             <span class="tx-amount">-Rp 25.000</span>
-          </div>
+          </li>
 
-          <!-- Gojek ke Kampus -->
-          <div class="tx-item">
-            <div class="tx-icon" style="background: #B7EAFF;">
+          <li class="tx-item">
+            <div class="tx-icon" style="background: var(--secondary-light);" aria-hidden="true">
               <svg width="17" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M20 8H17V4H3C1.9 4 1 4.9 1 6V17H3C3 18.66 4.34 20 6 20C7.66 20 9 18.66 9 17H15C15 18.66 16.34 20 18 20C19.66 20 21 18.66 21 17H23V12L20 8ZM6 18.5C5.17 18.5 4.5 17.83 4.5 17C4.5 16.17 5.17 15.5 6 15.5C6.83 15.5 7.5 16.17 7.5 17C7.5 17.83 6.83 18.5 6 18.5ZM19.5 9.5L21.46 12H17V9.5H19.5ZM18 18.5C17.17 18.5 16.5 17.83 16.5 17C16.5 16.17 17.17 15.5 18 15.5C18.83 15.5 19.5 16.17 19.5 17C19.5 17.83 18.83 18.5 18 18.5Z"
-                  fill="#00677F" />
+                  fill="var(--secondary-color)" />
               </svg>
             </div>
             <div class="tx-info">
-              <p class="tx-name">Gojek ke Kampus</p>
+              <h3 class="tx-name">Gojek ke Kampus</h3>
               <p class="tx-meta">Transportasi • Hari ini, 08:15</p>
             </div>
             <span class="tx-amount">-Rp 15.000</span>
-          </div>
+          </li>
 
-          <!-- Kopi Senja -->
-          <div class="tx-item">
-            <div class="tx-icon" style="background: #FFDAD6;">
+          <li class="tx-item">
+            <div class="tx-icon" style="background: var(--accent-light);" aria-hidden="true">
               <svg width="19" height="19" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M20 3H4V10C4 13.31 6.69 16 10 16V19H7V21H17V19H14V16C17.31 16 20 13.31 20 10V3ZM18 10H6V5H18V10Z"
-                  fill="#BA1A1A" />
+                  fill="var(--danger-color)" />
               </svg>
             </div>
             <div class="tx-info">
-              <p class="tx-name">Kopi Senja</p>
+              <h3 class="tx-name">Kopi Senja</h3>
               <p class="tx-meta">Nongkrong • Kemarin, 19:00</p>
             </div>
             <span class="tx-amount">-Rp 35.000</span>
-          </div>
+          </li>
 
-        </div>
-      </div>
+        </ul>
+      </section>
 
     </main>
 
-    <!-- ── Bottom navigation ── -->
-    <nav class="bottom-nav">
-      <!-- Beranda (active) -->
-      <a class="nav-item nav-item--active" href="index.html">
-        <span class="nav-icon">
+    <nav class="bottom-nav" aria-label="Navigasi Utama">
+      <a class="nav-item nav-item--active" href="index.html" aria-current="page">
+        <span class="nav-icon" aria-hidden="true">
           <svg width="15" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M10 20V14H14V20H19V12H22L12 3L2 12H5V20H10Z" fill="currentColor" />
           </svg>
@@ -711,9 +754,8 @@
         Beranda
       </a>
 
-      <!-- Riwayat -->
       <a class="nav-item" href="riwayat.html">
-        <span class="nav-icon">
+        <span class="nav-icon" aria-hidden="true">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M13 3C8.03 3 4 7.03 4 12H1L4.89 15.89L4.96 16.03L9 12H6C6 8.13 9.13 5 13 5C16.87 5 20 8.13 20 12C20 15.87 16.87 19 13 19C11.07 19 9.32 18.21 8.06 16.94L6.64 18.36C8.27 19.99 10.51 21 13 21C17.97 21 22 16.97 22 12C22 7.03 17.97 3 13 3ZM12 8V13L16.28 15.54L17 14.33L13.5 12.25V8H12Z"
@@ -723,9 +765,8 @@
         Riwayat
       </a>
 
-      <!-- AI Catat -->
       <a class="nav-item" href="catat-transaksi.html">
-        <span class="nav-icon">
+        <span class="nav-icon" aria-hidden="true">
           <svg width="14" height="19" viewBox="0 0 24 32" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M12 2C10.3431 2 9 3.34315 9 5V16C9 17.6569 10.3431 19 12 19C13.6569 19 15 17.6569 15 16V5C15 3.34315 13.6569 2 12 2Z"
@@ -739,9 +780,8 @@
         AI Catat
       </a>
 
-      <!-- Anggaran -->
       <a class="nav-item" href="anggaran.html">
-        <span class="nav-icon">
+        <span class="nav-icon" aria-hidden="true">
           <svg width="19" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M21 18V19C21 20.1 20.1 21 19 21H5C3.89 21 3 20.1 3 19V5C3 3.9 3.89 3 5 3H19C20.1 3 21 3.9 21 5V6H12C10.89 6 10 6.9 10 8V16C10 17.1 10.89 18 12 18H21ZM12 16H22V8H12V16ZM16 13.5C15.17 13.5 14.5 12.83 14.5 12C14.5 11.17 15.17 10.5 16 10.5C16.83 10.5 17.5 11.17 17.5 12C17.5 12.83 16.83 13.5 16 13.5Z"
