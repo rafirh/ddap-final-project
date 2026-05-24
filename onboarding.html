@@ -321,7 +321,7 @@
           <label class="field-label" for="target">Target Uang Saku Bulanan</label>
           <div class="input-wrap">
             <span class="input-prefix" aria-hidden="true">Rp</span>
-            <input id="target" class="input-amount" type="number" min="0" step="1000" placeholder="0" style="padding-left: 52px;" />
+            <input id="target" class="input-amount" type="text" inputmode="numeric" placeholder="0" style="padding-left: 52px;" />
           </div>
           <p class="field-hint">Tenang, ini bisa diubah kapan saja.</p>
         </div>
@@ -339,6 +339,14 @@
     </div>
 
   </div>
+  <script>
+  const targetInput = document.getElementById('target');
+
+  targetInput.addEventListener('input', function () {
+    const raw = this.value.replace(/\D/g, '');
+    this.value = raw ? parseInt(raw).toLocaleString('id-ID') : '';
+  });
+  </script>
 </body>
 
 </html>
